@@ -15,7 +15,32 @@ export interface Event {
   time: Time;
 }
 
-export interface OverlayBlock {
-  event: Event;
-  offset: number;
+export interface Block<T> {
+  data: T;
+  offset?: number;
+  size: number;
 }
+
+const test: Block<Time> = {
+  size: 0,
+  offset: 0,
+  data: {
+    start: {
+      h: 0,
+      m: 0,
+    },
+    end: {
+      h: 0,
+      m: 0,
+    },
+  },
+};
+
+export interface TimeBlock {
+  block: number;
+  time: Time;
+}
+
+type ID = { id: "A"; idb: "B" } | { id: "C"; idb: "D" };
+
+const id: ID = { id: "C", idb: "D" };
