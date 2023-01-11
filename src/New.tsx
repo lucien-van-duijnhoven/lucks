@@ -1,5 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, ReactDOM } from "react";
 import { dummyEvents } from "./foo";
+import { OverlayBlock, Event, HourMinute, Time } from "./type";
 
 function numberRangeIntoBlocks(start: number, end: number, blockSize: number) {
   const range = end - start;
@@ -17,29 +18,21 @@ function numberRangeIntoBlocks(start: number, end: number, blockSize: number) {
   blocks.push(bufferBlock);
   return blocks;
 }
-interface HourMinute {
-  h: number;
-  m: number;
-}
+// interface HourMinute {
+//   h: number;
+//   m: number;
+// }
 
-interface Time {
-  start: HourMinute;
-  end: HourMinute;
-}
+// interface Time {
+//   start: HourMinute;
+//   end: HourMinute;
+// }
 
-interface Day {
-  title: string;
-  events: Time[];
-}
+// export interface Event {
+//   times: Time;
+//   data?: any;
+// }
 
-export interface Event {
-  times: Time;
-  data?: any;
-}
-
-interface EventWithBuffers {
-  times: Time;
-}
 interface ActiveBlock {
   time: Time;
   offset: number;
@@ -70,11 +63,11 @@ export const New: FC = () => {
 
   // const blocks = numberRangeIntoBlocks(hourMinuteToMinutes(dayRange.start), hourMinuteToMinutes(dayRange.end), 60);
 
-  function createEventOverlay(dayRange: Time, events: Event[]): ActiveBlock[] {
-    const activeBlocks = events.map((event) => {
-      const offset = getDifferenceInTime(dayRange.start, event.times.start);
+  function createEventOverlay(dayRange: Time, events: Event[]): OverlayBlock[] {
+    const activeBlocks: OverlayBlock[] = events.map((event) => {
+      const offset = getDifferenceInTime(dayRange.start, event.time.start);
       return {
-        time: event.times,
+        event: event,
         offset,
       };
     });
@@ -102,7 +95,6 @@ export const New: FC = () => {
   }
 
   function createSideBarTimes(dayStart: HourMinute, dayEnd: HourMinute) {
-    debugger;
     const blocks: TimeBlock[] = numberRangeIntoBlocks(
       hourMinuteToMinutes(dayStart),
       hourMinuteToMinutes(dayEnd),
@@ -142,12 +134,14 @@ export const New: FC = () => {
       });
     return blocks;
   }
+
+  function handleOverlayBlockClick(event: Event) {}
+
   function stringDubbleZero(input: number) {
     return input === 0 ? "00" : `${input}`;
   }
-  debugger;
 
-  function createDayTimes(dayRange: Time) {
+  function createDayBackdropBlocks(dayRange: Time) {
     return numberRangeIntoBlocks(
       hourMinuteToMinutes(dayRange.start),
       hourMinuteToMinutes(dayRange.end),
@@ -216,7 +210,7 @@ export const New: FC = () => {
                 className="z-0 w-full absolute"
                 style={{ position: "absolute" }}
               >
-                {createDayTimes({
+                {createDayBackdropBlocks({
                   start: { h: 7, m: 11 },
                   end: { h: 17, m: 22 },
                 }).map((height) => (
@@ -232,20 +226,23 @@ export const New: FC = () => {
               {createEventOverlay(
                 { start: { h: 7, m: 11 }, end: { h: 17, m: 22 } },
                 dummyEvents
-              ).map((event) => (
+              ).map((OverlayBlock) => (
                 <div
-                  className={`top-[${event.offset}px] absolute w-full bg-red-300`}
+                  onClick={() => handleOverlayBlockClick(OverlayBlock.event)}
+                  className={`top-[${OverlayBlock.offset}px] absolute w-full bg-red-300`}
                   style={{
-                    top: `${event.offset}px`,
+                    top: `${OverlayBlock.offset}px`,
                     height: getDifferenceInTime(
-                      event.time.start,
-                      event.time.end
+                      OverlayBlock.event.time.start,
+                      OverlayBlock.event.time.end
                     ),
                   }}
                 >
                   <span>
-                    {event.time.start.h}:{stringDubbleZero(event.time.end.m)} -{" "}
-                    {event.time.end.h}:{stringDubbleZero(event.time.end.m)}
+                    {OverlayBlock.event.time.start.h}:
+                    {stringDubbleZero(OverlayBlock.event.time.end.m)} -{" "}
+                    {OverlayBlock.event.time.end.h}:
+                    {stringDubbleZero(OverlayBlock.event.time.end.m)}
                   </span>
                 </div>
               ))}

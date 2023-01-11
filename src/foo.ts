@@ -1,11 +1,13 @@
-import { Event } from "./New";
+// import { Event } from "./New";
+
+import { Event } from "./type";
 
 export const dummyEvents: Event[] = [
   {
-    data: {
-      title: "hello",
-    },
-    times: {
+    title: "1",
+    description: "something 1",
+    speaker: "me",
+    time: {
       start: {
         h: 10,
         m: 12,
@@ -17,10 +19,10 @@ export const dummyEvents: Event[] = [
     },
   },
   {
-    data: {
-      title: "event 2",
-    },
-    times: {
+    title: "2",
+    description: "something 2",
+    speaker: "me again",
+    time: {
       start: {
         h: 11,
         m: 0,
@@ -32,10 +34,10 @@ export const dummyEvents: Event[] = [
     },
   },
   {
-    data: {
-      title: "event 3",
-    },
-    times: {
+    title: "3",
+    description: "something 3",
+    speaker: "me ones more",
+    time: {
       start: {
         h: 12,
         m: 12,
