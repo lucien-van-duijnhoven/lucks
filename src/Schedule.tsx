@@ -1,5 +1,5 @@
 import React, { createContext, FC, ReactDOM, useContext } from "react";
-import { dummyEvents } from "./foo";
+import { dummyEvents } from "./data";
 import { Block, Event, HourMinute, Time, TimeBlock } from "./type";
 import Room from "./Room";
 import SidBar from "./SideBar";

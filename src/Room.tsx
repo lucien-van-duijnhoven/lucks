@@ -8,7 +8,6 @@ import {
   numberRangeIntoBlocks,
 } from "./helper";
 import { Event, HourMinute, Block, TimeBlock, Time } from "./type";
-import { dummyEvents } from "./foo";
 import { useMetaDataContext } from "./MetaDataProvider";
 
 function createEventOverlay(dayRange: Time, events: Event[]): Block<Event>[] {
