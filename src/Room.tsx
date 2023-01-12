@@ -9,6 +9,7 @@ import {
 } from "./helper";
 import { Event, HourMinute, Block, TimeBlock, Time } from "./type";
 import { dummyEvents } from "./foo";
+import { useMetaDataContext } from "./MetaDataProvider";
 
 function createEventOverlay(dayRange: Time, events: Event[]): Block<Event>[] {
   const activeBlocks: Block<Event>[] = events.map((event) => {
@@ -37,13 +38,13 @@ function createDayBackdropBlocks(dayRange: Time): Block<null>[] {
 }
 
 function Room({ events, range }: { events: Event[]; range: Time }) {
-  const pxPerMinute = 1;
+  const {sizeMultiplier} = useMetaDataContext()
   return (
     <div className="w-full relative bg-lime-100">
       <div className="z-0 w-full absolute" style={{ position: "absolute" }}>
         {createDayBackdropBlocks(range).map((block) => (
           <div
-            style={{ height: block.size * pxPerMinute }}
+            style={{ height: block.size * sizeMultiplier }}
             className="w-full border-2 border-white"
           >
             hello
@@ -56,11 +57,11 @@ function Room({ events, range }: { events: Event[]; range: Time }) {
           //   onClick={() => handleOverlayBlockClick(block.data)}
           className={`absolute w-full bg-red-300`}
           style={{
-            top: `${block.offset}px`,
+            top: `${block.offset && block.offset * sizeMultiplier}px`,
             height: getDifferenceInTime(
               block.data.time.start,
               block.data.time.end
-            ),
+            ) * sizeMultiplier,
           }}
         >
           <span>

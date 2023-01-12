@@ -5,14 +5,15 @@ import {
   minutesToHoursMinutes,
   stringDubbleZero,
 } from "./helper";
+import { useMetaDataContext } from "./MetaDataProvider";
 
 function SidBar({ range }: { range: Time }) {
-  const pxPerMinute = 1;
+  const {sizeMultiplier} = useMetaDataContext()
   return (
     <>
       {createSideBarTimes(range)?.map((timeBlock) => (
         <div
-          style={{ height: timeBlock.size * pxPerMinute }}
+          style={{ height: timeBlock.size * sizeMultiplier }}
           className="shrink-0 bg-[#ff7328] border-2 border-solid border-white"
         >
           <span>

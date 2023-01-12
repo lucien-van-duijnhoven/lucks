@@ -1,9 +1,10 @@
-import React, { FC, ReactDOM } from "react";
+import React, { createContext, FC, ReactDOM, useContext } from "react";
 import { dummyEvents } from "./foo";
 import { Block, Event, HourMinute, Time, TimeBlock } from "./type";
 import Room from "./Room";
 import SidBar from "./SideBar";
-
+import { ThemeProvider } from "./ThemeProvider";
+import { MetaDataProvider, useMetaDataContext } from "./MetaDataProvider";
 // interface HourMinute {
 //   h: number;
 //   m: number;
@@ -43,9 +44,14 @@ export const New: FC = () => {
 
   function handleOverlayBlockClick(event: Event) {}
 
+  const {sizeMultiplier, setSizeMultiplier} = useMetaDataContext()
+
   return (
+    <ThemeProvider>
+    <MetaDataProvider>
     <main className="bg-slate-900 w-full text-[#18417f] h-fit">
       <button onClick={handleTimesTest}>run times</button>
+      <input type="number" name="" id="" value={sizeMultiplier} onChange={(e) => setSizeMultiplier(new Number(e.target.value))} />
       <div className="snap-x flex overflow-scroll snap-mandatory">
         <div className="sticky left-0 w-1/5 min-w-fit bg-indigo-100 shrink-0">
           <h1>Times</h1>
@@ -102,6 +108,8 @@ export const New: FC = () => {
         </>
       </div>
     </main>
+    </MetaDataProvider>
+    </ThemeProvider>
   );
 };
 
@@ -167,3 +175,5 @@ const dummyData: Time[] = [
     },
   },
 ];
+
+
