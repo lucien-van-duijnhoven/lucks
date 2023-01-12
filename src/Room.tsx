@@ -52,7 +52,7 @@ function Room({ events, range }: { events: Event[]; range: Time }) {
       {createEventOverlay(range, events).map((block) => (
         <div
           //   onClick={() => handleOverlayBlockClick(block.data)}
-          className={`absolute w-full bg-red-300 rounded-lg border-1 border-solid`}
+          className={`absolute z-10 w-full bg-red-300 rounded-lg border-1 border-solid`}
           style={{
             top: `${block.offset && block.offset * sizeMultiplier}px`,
             height: getDifferenceInTime(

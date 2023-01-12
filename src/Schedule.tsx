@@ -1,5 +1,5 @@
 import React, { createContext, FC, ReactDOM, useContext } from "react";
-import { dummyEvents } from "./data";
+import { dummyEvents, dummyRooms } from "./data";
 import { Block, Event, HourMinute, Time, TimeBlock } from "./type";
 import Room from "./Room";
 import SidBar from "./SideBar";
@@ -34,18 +34,20 @@ export const Schedule: FC = () => {
           <h1>Times</h1>
           <SidBar range={{ start: { h: 7, m: 11 }, end: { h: 17, m: 22 } }} />
         </div>
-          <div className="snap-center shrink-0 w-full bg-[#fef6e0] flex place-items-end flex-col">
+        {dummyRooms.map(room =>
+          <div key={room.title} className="snap-center shrink-0 w-full bg-[#fef6e0] flex place-items-end flex-col">
             <div className="w-4/5 flex">
-              <h2 className="place-self-center bg-indigo-100 w-full">Title</h2>
+              <h2 className="place-self-center bg-indigo-100 w-full">{room.title}</h2>
             </div>
             {/* dayContainer */}
             <div className="w-4/5 h-fit relative bg-lime-100">
               <Room
-                events={dummyEvents}
+                events={room.events}
                 range={{ start: { h: 7, m: 11 }, end: { h: 17, m: 22 } }}
               />
             </div>
           </div>
+        )}
       </div>
     </MetaDataProvider>
     </ThemeProvider>

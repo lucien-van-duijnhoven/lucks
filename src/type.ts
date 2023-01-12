@@ -15,6 +15,11 @@ export interface Event {
   time: Time;
 }
 
+export interface Room {
+  events: Event[],
+  title: string
+}
+
 export interface Block<T> {
   data: T;
   offset?: number;

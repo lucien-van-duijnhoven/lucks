@@ -14,7 +14,7 @@ function SidBar({ range }: { range: Time }) {
       {createSideBarTimes(range)?.map((timeBlock) => (
         <div
           style={{ height: timeBlock.size * sizeMultiplier }}
-          className="shrink-0 bg-[#ff7328] border-2 border-solid border-white"
+          className="shrink-0 bg-[#ff7328] border-2 z-20 border-solid border-white"
         >
           <span>
             {timeBlock.data.start.h}:{stringDubbleZero(timeBlock.data.end.m)} -{" "}
