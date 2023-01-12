@@ -17,7 +17,7 @@ function SidBar({ range }: { range: Time }) {
           className="shrink-0 bg-[#ff7328] border-2 z-20 border-solid border-white"
         >
           <span>
-            {timeBlock.data.start.h}:{stringDubbleZero(timeBlock.data.end.m)} -{" "}
+            {timeBlock.data.start.h}:{stringDubbleZero(timeBlock.data.start.m)} -{" "}
             {timeBlock.data.end.h}:{stringDubbleZero(timeBlock.data.end.m)}
           </span>
         </div>

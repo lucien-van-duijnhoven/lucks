@@ -62,7 +62,7 @@ function Room({ events, range }: { events: Event[]; range: Time }) {
           }}
         >
           <span>
-            {block.data.time.start.h}:{stringDubbleZero(block.data.time.end.m)}{" "}
+            {block.data.time.start.h}:{stringDubbleZero(block.data.time.start.m)}{" "}
             - {block.data.time.end.h}:{stringDubbleZero(block.data.time.end.m)}
           </span>
         </div>

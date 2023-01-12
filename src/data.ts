@@ -2,9 +2,6 @@
 
 import { Event, Room } from "./type";
 
-
-
-
 export const dummyEvents: Event[] = [
   {
     title: "1",
