@@ -47,15 +47,13 @@ function Room({ events, range }: { events: Event[]; range: Time }) {
             style={{ height: block.size * sizeMultiplier }}
             className="w-full border-2 border-white"
           >
-            hello
           </div>
         ))}
       </div>
-      This should overlay
       {createEventOverlay(range, events).map((block) => (
         <div
           //   onClick={() => handleOverlayBlockClick(block.data)}
-          className={`absolute w-full bg-red-300`}
+          className={`absolute w-full bg-red-300 rounded-lg border-1 border-solid`}
           style={{
             top: `${block.offset && block.offset * sizeMultiplier}px`,
             height: getDifferenceInTime(
