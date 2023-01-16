@@ -10,11 +10,11 @@ import { useMetaDataContext } from "./MetaDataProvider";
 function SidBar({ range }: { range: Time }) {
   const {sizeMultiplier} = useMetaDataContext()
   return (
-    <>
-      {createSideBarTimes(range)?.map((timeBlock) => (
+    <div>
+      {createSideBarTimes(range)?.map((timeBlock, index) => (
         <div
           style={{ height: timeBlock.size * sizeMultiplier }}
-          className="shrink-0 bg-[#ff7328] border-2 z-20 border-solid border-white"
+          className={"shrink-0 border-2 border-solid border-[#fff6e0] text-[#fff6e0]" + " " + (index % 2 == 0 ? "bg-[#04261e]" : "bg-[#084c3c]")}
         >
           <span>
             {timeBlock.data.start.h}:{stringDubbleZero(timeBlock.data.start.m)} -{" "}
@@ -22,7 +22,7 @@ function SidBar({ range }: { range: Time }) {
           </span>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

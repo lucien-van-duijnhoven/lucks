@@ -20,6 +20,8 @@ export interface Room {
   title: string
 }
 
+type Rooms = Room[]
+
 export interface Block<T> {
   data: T;
   offset?: number;

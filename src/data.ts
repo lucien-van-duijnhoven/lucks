@@ -14,7 +14,7 @@ export const dummyEvents: Event[] = [
       },
       end: {
         h: 10,
-        m: 55,
+        m: 30,
       },
     },
   },
@@ -40,7 +40,7 @@ export const dummyEvents: Event[] = [
     time: {
       start: {
         h: 12,
-        m: 12,
+        m: 22,
       },
       end: {
         h: 13,
