@@ -4,6 +4,7 @@ import {
   numberRangeIntoBlocks,
   minutesToHoursMinutes,
   stringDubbleZero,
+  printTime,
 } from "./helper";
 import { useMetaDataContext } from "./MetaDataProvider";
 
@@ -17,8 +18,7 @@ function SidBar({ range }: { range: Time }) {
           className={"shrink-0 border-2 border-solid border-[#fff6e0] text-[#fff6e0]" + " " + (index % 2 == 0 ? "bg-[#04261e]" : "bg-[#084c3c]")}
         >
           <span>
-            {timeBlock.data.start.h}:{stringDubbleZero(timeBlock.data.start.m)} -{" "}
-            {timeBlock.data.end.h}:{stringDubbleZero(timeBlock.data.end.m)}
+            {printTime(timeBlock.data)}
           </span>
         </div>
       ))}

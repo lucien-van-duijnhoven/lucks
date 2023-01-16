@@ -34,10 +34,12 @@ export const Schedule: FC = () => {
     <ThemeProvider>
     <MetaDataProvider>
       {eventModalData && (
-        <EventModal data={eventModalData}/>
+        <EventModal
+        onClose={()=>setEventModalData(null)}
+        data={eventModalData}/>
       )}
       <div className="snap-x flex overflow-x-scroll overflow-y-hidden snap-mandatory h-fit ">
-        <div className="sticky z-50 left-0 w-1/5 min-w-fit bg-[#93ffe0] shrink-0">
+        <div className="sticky z-20 left-0 w-1/5 min-w-fit bg-[#93ffe0] shrink-0">
           <h1>Times</h1>
           <SidBar range={dayRange} />
         </div>
@@ -51,6 +53,7 @@ export const Schedule: FC = () => {
               <Room
                 events={room.events}
                 range={dayRange}
+                onOverlayBlockClick={setEventModalData}
               />
             </div>
           </div>

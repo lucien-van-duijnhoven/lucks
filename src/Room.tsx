@@ -6,6 +6,7 @@ import {
   minutesToHoursMinutes,
   stringDubbleZero,
   numberRangeIntoBlocks,
+  printTime,
 } from "./helper";
 import { Event, HourMinute, Block, TimeBlock, Time } from "./type";
 import { useMetaDataContext } from "./MetaDataProvider";
@@ -36,7 +37,7 @@ function createDayBackdropBlocks(dayRange: Time): Block<null>[] {
   });
 }
 
-function Room({ events, range }: { events: Event[]; range: Time }) {
+function Room({ events, range, onOverlayBlockClick: onOverlayBlockClick }: { events: Event[]; range: Time, onOverlayBlockClick: (event: Event)=>any }) {
   const {sizeMultiplier} = useMetaDataContext()
   return (
     <div className="w-full relative bg-[#04261e]">
@@ -51,7 +52,7 @@ function Room({ events, range }: { events: Event[]; range: Time }) {
       </div>
       {createEventOverlay(range, events).map((block) => (
         <div
-            // onClick={() => handleOverlayBlockClick(block.data)}
+            onClick={() => onOverlayBlockClick(block.data)}
           className={`absolute z-10 w-full bg-[#e65924] rounded-lg border-1 border-solid text-[#fff6e0]`}
           style={{
             top: `${block.offset && block.offset * sizeMultiplier}px`,
@@ -63,9 +64,7 @@ function Room({ events, range }: { events: Event[]; range: Time }) {
         >
           <span className="truncate pl-3">
           <b>{block.data.title}</b>{" "}
-            {block.data.time.start.h}:{stringDubbleZero(block.data.time.start.m)}{" "}
-            - {block.data.time.end.h}:{stringDubbleZero(block.data.time.end.m)}{" "}
-            
+            {printTime(block.data.time)}
           </span>
         </div>
       ))}

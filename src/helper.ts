@@ -43,3 +43,7 @@ export function numberRangeIntoBlocks(
   blocks.push(bufferBlock);
   return blocks;
 }
+
+export function printTime (time: Time): string {
+  return `${time.start.h}:${stringDubbleZero(time.start.m)} - ${time.end.h}:${stringDubbleZero(time.end.m)}`
+}
