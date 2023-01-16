@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "forceBuild": "tsc-silent -p './tsconfig.json' --suppress @ && vite build",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
