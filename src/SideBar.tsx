@@ -17,7 +17,7 @@ function SidBar({ range }: { range: Time }) {
           style={{ height: timeBlock.size * sizeMultiplier }}
           className={"shrink-0 border-2 border-solid border-[#fff6e0] text-[#fff6e0]" + " " + (index % 2 == 0 ? "bg-[#04261e]" : "bg-[#084c3c]")}
         >
-          <span>
+          <span className="flex">
             {printTime(timeBlock.data)}
           </span>
         </div>

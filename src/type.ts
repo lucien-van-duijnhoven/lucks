@@ -20,28 +20,13 @@ export interface Room {
   title: string
 }
 
-type Rooms = Room[]
+export type Rooms = Room[]
 
 export interface Block<T> {
   data: T;
   offset?: number;
   size: number;
 }
-
-const test: Block<Time> = {
-  size: 0,
-  offset: 0,
-  data: {
-    start: {
-      h: 0,
-      m: 0,
-    },
-    end: {
-      h: 0,
-      m: 0,
-    },
-  },
-};
 
 export interface TimeBlock {
   block: number;

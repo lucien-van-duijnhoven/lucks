@@ -20,7 +20,6 @@ function createEventOverlay(dayRange: Time, events: Event[]): Block<Event>[] {
       size: getEventHeight(event.time),
     };
   });
-  debugger;
   return activeBlocks;
 }
 
@@ -53,7 +52,7 @@ function Room({ events, range, onOverlayBlockClick: onOverlayBlockClick }: { eve
       {createEventOverlay(range, events).map((block) => (
         <div
             onClick={() => onOverlayBlockClick(block.data)}
-          className={`absolute z-10 w-full bg-[#e65924] rounded-lg border-1 border-solid text-[#fff6e0]`}
+          className={`absolute z-10 w-full bg-[#e65924] rounded-lg border-2  border-solid text-[#fff6e0] border-[#c64414]`}
           style={{
             top: `${block.offset && block.offset * sizeMultiplier}px`,
             height: getDifferenceInTime(
