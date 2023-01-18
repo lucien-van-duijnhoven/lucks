@@ -7,12 +7,14 @@ import {
   printTime,
 } from "./helper";
 import { useMetaDataContext } from "./MetaDataProvider";
+import { useMemo } from "react";
 
 function SidBar({ range }: { range: Time }) {
   const {sizeMultiplier} = useMetaDataContext()
+  const sidebarBlocks = useMemo(()=>createSideBarTimes(range),[range]);
   return (
     <div>
-      {createSideBarTimes(range)?.map((timeBlock, index) => (
+      {sidebarBlocks.map((timeBlock, index) => (
         <div
           style={{ height: timeBlock.size * sizeMultiplier }}
           className={"shrink-0 border-2 border-solid border-[#fff6e0] text-[#fff6e0]" + " " + (index % 2 == 0 ? "bg-[#04261e]" : "bg-[#084c3c]")}

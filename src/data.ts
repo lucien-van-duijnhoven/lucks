@@ -1,6 +1,6 @@
 // import { Event } from "./New";
 
-import { Event, Room } from "./type";
+import { Event, Room, Rooms } from "./type";
 
 export const dummyEvents: Event[] = [
   {
@@ -50,7 +50,7 @@ export const dummyEvents: Event[] = [
   },
 ];
 
-export const dummyRooms: Room[] = new Array(3).fill(dummyEvents).map((events, index)=> {
+export const dummyRooms: Rooms = new Array(3).fill(dummyEvents).map((events, index)=> {
   return {
     events: events,
     title: `room ${index}`

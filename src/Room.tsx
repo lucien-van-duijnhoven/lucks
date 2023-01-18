@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   getDifferenceInTime,
   getEventHeight,
@@ -38,10 +38,12 @@ function createDayBackdropBlocks(dayRange: Time): Block<null>[] {
 
 function Room({ events, range, onOverlayBlockClick: onOverlayBlockClick }: { events: Event[]; range: Time, onOverlayBlockClick: (event: Event)=>any }) {
   const {sizeMultiplier} = useMetaDataContext()
+  const  backdropBlocks = useMemo(()=>createDayBackdropBlocks(range), [range]);
+  const overlayBlocks = useMemo(()=>createEventOverlay(range, events),[range,events]);
   return (
     <div className="w-full relative bg-[#04261e]">
       <div className="w-full absolute" style={{ position: "absolute" }}>
-        {createDayBackdropBlocks(range).map((block, index) => (
+        {backdropBlocks.map((block, index) => (
           <div
             style={{ height: block.size * sizeMultiplier }}
             className={"w-full border-2 border-[#fff6e0]" + " " + (index % 2 == 0 ? "bg-[#04261e]" : "bg-[#084c3c]")}
@@ -49,7 +51,7 @@ function Room({ events, range, onOverlayBlockClick: onOverlayBlockClick }: { eve
           </div>
         ))}
       </div>
-      {createEventOverlay(range, events).map((block) => (
+      {overlayBlocks.map((block) => (
         <div
             onClick={() => onOverlayBlockClick(block.data)}
           className={`absolute z-10 w-full bg-[#e65924] rounded-lg border-2  border-solid text-[#fff6e0] border-[#c64414]`}

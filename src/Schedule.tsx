@@ -10,7 +10,7 @@ import EventModal from "./EventModal";
 export const Schedule: FC = () => {
   const dayRange: Time = {
     start: {
-      h: 13,
+      h: 7,
       m: 0,
     },
     end: {
@@ -84,28 +84,30 @@ function useFetch(url: string) {
   const [loading, setLoading] = useState(true);
 
   async function fetchData() {
-    const response = await fetch(url);
-    const json = await response.json();
-    let parsedJson: Rooms = []
-    for (let key in json) {
-      parsedJson.push(json[key]);
-    }
-    const data: Rooms = parsedJson.map((room: { events: any[]; })=>{ return {...room,events:room.events.map((event: { time: any; })=>{
-      const time = event.time;
-      return {
-        ...event,
-        time: {
-          start: {
-            h: parseInt(time.start.h),
-            m: parseInt(time.start.m),
-          },
-          end: {
-            h: parseInt(time.end.h),
-            m: parseInt(time.end.m),
-          }
-        }
-      }
-    })}});
+    // const response = await fetch(url);
+    // const json = await response.json();
+    // let parsedJson: Rooms = []
+    // for (let key in json) {
+    //   parsedJson.push(json[key]);
+    // }
+    // const data: Rooms = parsedJson.map((room: { events: any[]; })=>{ return {...room,events:room.events.map((event: { time: any; })=>{
+    //   const time = event.time;
+    //   return {
+    //     ...event,
+    //     time: {
+    //       start: {
+    //         h: parseInt(time.start.h),
+    //         m: parseInt(time.start.m),
+    //       },
+    //       end: {
+    //         h: parseInt(time.end.h),
+    //         m: parseInt(time.end.m),
+    //       }
+    //     }
+    //   }
+    // })}});
+
+    const data = dummyRooms;
 
     console.log(data);
     setData(data);
