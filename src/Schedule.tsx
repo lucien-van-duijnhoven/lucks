@@ -52,8 +52,8 @@ export const Schedule: FC = () => {
         onClose={()=>setEventModalData(null)}
         data={eventModalData}/>
       )}
-      <div className="snap-x text-[#fff6e0] flex overflow-x-scroll overflow-y-hidden snap-mandatory h-fit ">
-        <div className="sticky z-20 left-0 w-1/5 min-w-fit bg-[#6abca5] shrink-0">
+      <div className="snap-x text-[#fff6e0] flex overflow-x-scroll overflow-y-hidden snap-mandatory ">
+        <div className="sticky z-20 left-0 w-1/5 bg-[#6abca5] shrink-0">
           <h1>Times</h1>
           <SidBar range={dayRange} />
         </div>
@@ -63,7 +63,7 @@ export const Schedule: FC = () => {
               <h2 className="place-self-center bg-[#6abca5] w-full">{room.title}</h2>
             </div>
             {/* dayContainer */}
-            <div className="w-4/5 h-fit relative bg-[#6abca5]">
+            <div className="w-4/5 relative bg-[#6abca5]">
               <Room
                 events={room.events}
                 range={dayRange}

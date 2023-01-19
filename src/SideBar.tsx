@@ -17,7 +17,7 @@ function SidBar({ range }: { range: Time }) {
       {sidebarBlocks.map((timeBlock, index) => (
         <div
           style={{ height: timeBlock.size * sizeMultiplier }}
-          className={"shrink-0 border-2 border-solid border-[#fff6e0] text-[#fff6e0]" + " " + (index % 2 == 0 ? "bg-[#04261e]" : "bg-[#084c3c]")}
+          className={"w-full border-2 border-solid border-[#fff6e0] text-[#fff6e0]" + " " + (index % 2 == 0 ? "bg-[#04261e]" : "bg-[#084c3c]")}
         >
           <span className="flex">
             {printTime(timeBlock.data)}
@@ -34,7 +34,7 @@ function createSideBarTimes(range: Time): Block<Time>[] {
   const blocks: Block<Time>[] = numberRangeIntoBlocks(
     hourMinuteToMinutes(range.start),
     hourMinuteToMinutes(range.end),
-    60
+    90
   )
     .reduce(
       (acc, block) => {

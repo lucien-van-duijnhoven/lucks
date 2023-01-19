@@ -53,8 +53,8 @@ function Room({ events, range, onOverlayBlockClick: onOverlayBlockClick }: { eve
       </div>
       {overlayBlocks.map((block) => (
         <div
-            onClick={() => onOverlayBlockClick(block.data)}
-          className={`absolute z-10 w-full bg-[#e65924] rounded-lg border-2  border-solid text-[#fff6e0] border-[#c64414]`}
+          onClick={() => onOverlayBlockClick(block.data)}
+          className={`truncate absolute z-10 w-full bg-[#e65924] rounded-lg border-2  border-solid text-[#fff6e0] border-[#c64414]`}
           style={{
             top: `${block.offset && block.offset * sizeMultiplier}px`,
             height: getDifferenceInTime(
@@ -62,11 +62,13 @@ function Room({ events, range, onOverlayBlockClick: onOverlayBlockClick }: { eve
               block.data.time.end
             ) * sizeMultiplier,
           }}
-        >
-          <span className="truncate pl-3">
-          <b>{block.data.title}</b>{" "}
+        > 
+          <div className="pl-3 h-full flex flex-col justify-around">
+          <b className="w-full truncate">{block.data.title}</b>
+          <span className="truncate">
             {printTime(block.data.time)}
           </span>
+          </div>
         </div>
       ))}
     </div>
